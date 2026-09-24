@@ -1,0 +1,326 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --canvas: #fff6e5;
+  --surface: #ffffff;
+  --muted: #ffefd1;
+  --sunken: #f7dda8;
+  --overlay: rgb(0 0 0 / 0.6);
+  --night: #111111;
+
+  --line: #000000;
+  --line-strong: #000000;
+
+  --ink: #000000;
+  --ink-muted: #333333;
+  --ink-subtle: #595959;
+  --ink-inverse: #ffffff;
+
+  --main: #ffb224;
+  --main-foreground: #000000;
+
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --accent-soft: #ffd3b8;
+  --accent-ink: #7c2d12;
+  --on-accent: #ffffff;
+
+  --success: #166534;
+  --success-soft: #c7f9d9;
+  --warning: #854d0e;
+  --warning-soft: #ffe89a;
+  --danger: #b91c1c;
+  --danger-soft: #ffd0d0;
+  --info: #1e40af;
+  --info-soft: #cfe0ff;
+
+  --chart-1: #a8461f;
+  --chart-2: #3570c4;
+  --chart-3: #c28a1c;
+  --chart-4: #2a8a62;
+  --chart-5: #7a5cc0;
+  --chart-grid: #e8d9bd;
+
+  --shadow-offset: 4px;
+  --focus-ring: #000000;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #1b1a17;
+  --surface: #2a2823;
+  --muted: #34312a;
+  --sunken: #413d34;
+  --overlay: rgb(0 0 0 / 0.75);
+  --night: #2a2823;
+
+  --line: #000000;
+  --line-strong: #000000;
+
+  --ink: #f5f1e8;
+  --ink-muted: #d3ccbd;
+  --ink-subtle: #aba394;
+  --ink-inverse: #000000;
+
+  --main: #ffb224;
+  --main-foreground: #000000;
+
+  --accent: #ff8a4c;
+  --accent-hover: #ffa06b;
+  --accent-soft: #4a2a17;
+  --accent-ink: #ffc3a1;
+  --on-accent: #000000;
+
+  --success: #6ee7a0;
+  --success-soft: #173a26;
+  --warning: #fcd34d;
+  --warning-soft: #3d3210;
+  --danger: #fca5a5;
+  --danger-soft: #4a1d1d;
+  --info: #93c5fd;
+  --info-soft: #1c2c4a;
+
+  --chart-1: #d0683d;
+  --chart-2: #4f86d4;
+  --chart-3: #b58c22;
+  --chart-4: #36a075;
+  --chart-5: #8c6fd4;
+  --chart-grid: #3b372f;
+
+  --focus-ring: #ffb224;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-sunken: var(--sunken);
+  --color-overlay: var(--overlay);
+  --color-night: var(--night);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-main: var(--main);
+  --color-main-foreground: var(--main-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-grid: var(--chart-grid);
+
+  --color-background: var(--canvas);
+  --color-secondary-background: var(--surface);
+  --color-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-ring: var(--focus-ring);
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@theme {
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.625rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.3125rem;
+  --text-xl--line-height: 1.875rem;
+  --text-2xl: 1.625rem;
+  --text-2xl--line-height: 2.125rem;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl: 2.625rem;
+  --text-4xl--line-height: 3rem;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 3.875rem;
+  --text-6xl: 4.5rem;
+  --text-6xl--line-height: 4.75rem;
+
+  --tracking-tightish: -0.012em;
+  --tracking-display: -0.03em;
+  --tracking-eyebrow: 0.14em;
+
+  --font-weight-base: 500;
+  --font-weight-heading: 700;
+
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 5px;
+  --radius-xl: 6px;
+  --radius-2xl: 8px;
+  --radius-base: 5px;
+
+  --shadow-xs: 2px 2px 0 0 var(--line);
+  --shadow-sm: 3px 3px 0 0 var(--line);
+  --shadow-md: 4px 4px 0 0 var(--line);
+  --shadow-lg: 6px 6px 0 0 var(--line);
+  --shadow-shadow: 4px 4px 0 0 var(--line);
+  --shadow-ring: 0 0 0 2px var(--line);
+
+  --spacing-boxShadowX: 4px;
+  --spacing-boxShadowY: 4px;
+  --spacing-reverseBoxShadowX: -4px;
+  --spacing-reverseBoxShadowY: -4px;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in: fade-in 180ms var(--ease-out-soft);
+  --animate-slide-up: slide-up 220ms var(--ease-out-soft);
+  --animate-slide-in-right: slide-in-right 260ms var(--ease-out-soft);
+  --animate-slide-in-left: slide-in-left 260ms var(--ease-out-soft);
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-weight: var(--font-weight-base);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-heading);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--main);
+    color: var(--main-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: var(--text-2xs);
+  line-height: var(--text-2xs--line-height);
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+@utility press {
+  transition-property: transform, box-shadow;
+  transition-duration: 120ms;
+  &:hover {
+    transform: translate(var(--spacing-boxShadowX), var(--spacing-boxShadowY));
+    box-shadow: none;
+  }
+}
+
+@utility lift {
+  transition-property: transform, box-shadow;
+  transition-duration: 150ms;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--line);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
