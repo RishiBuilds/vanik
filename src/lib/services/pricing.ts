@@ -36,6 +36,9 @@ export const PAYOUT_FEE = 1000;
 export const COD_LIMIT = 2_500_000;
 
 export function computeVendorPayout(vendorSubtotal: number) {
+  if (vendorSubtotal <= 0) {
+    return { vendorSubtotal: 0, commission: 0, payoutFee: 0, net: 0 };
+  }
   const commission = Math.round(vendorSubtotal * PLATFORM_FEE_RATE);
   const net = Math.max(0, vendorSubtotal - commission - PAYOUT_FEE);
   return { vendorSubtotal, commission, payoutFee: PAYOUT_FEE, net };

@@ -8,9 +8,9 @@ import type { PayoutMethod } from "@/lib/db/schema";
 import { getSessionUser, getVendorContext, getVendorStore } from "@/lib/session";
 import { notify } from "@/lib/services/notifications";
 import { storage } from "@/lib/services/storage";
-import { slugify } from "@/lib/utils";
+import { slugify, truncate } from "@/lib/utils";
 import { CARRIERS } from "@/lib/services/shipping";
-import { upiSchema } from "@/lib/validation";
+import { ifscSchema, upiSchema } from "@/lib/validation";
 
 export type StoreActionResult =
   | { ok: true; message?: string }
@@ -47,7 +47,7 @@ export async function respondToReview(input: z.input<typeof replySchema>): Promi
     userId: review.userId,
     type: "review",
     title: editing ? `${ctx.store.name} updated their reply` : `${ctx.store.name} replied to your review`,
-    body: `On “${review.product.title}”: ${parsed.data.response.slice(0, 140)}${parsed.data.response.length > 140 ? "…" : ""}`,
+    body: `On “${review.product.title}”: ${truncate(parsed.data.response, 140)}`,
     href: `/p/${review.product.slug}#reviews`,
   });
   revalidatePath("/vendor", "layout");
@@ -60,7 +60,7 @@ const payoutSchema = z.discriminatedUnion("type", [
     type: z.literal("bank"),
     holderName: z.string().trim().min(2, "Enter the account holder’s name").max(80),
     bankName: z.string().trim().min(2, "Enter the bank name").max(80),
-    ifsc: z.string().trim().toUpperCase().regex(/^[A-Z]{4}0[A-Z0-9]{6}$/, "IFSC codes look like HDFC0001234"),
+    ifsc: ifscSchema,
     accountNumber: z.string().trim().regex(/^\d{9,18}$/, "Indian account numbers are 9–18 digits"),
   }),
   z.object({

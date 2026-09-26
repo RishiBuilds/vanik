@@ -99,13 +99,17 @@ export function unsplash(id: string, w = 800, h?: number) {
 }
 
 export function truncate(str: string, maxLen: number) {
+  if (maxLen <= 0) return "";
   if (str.length <= maxLen) return str;
-  return str.slice(0, maxLen - 1).trimEnd() + "…";
+  return str.slice(0, Math.max(0, maxLen - 1)).trimEnd() + "…";
 }
 
 export function formatWeight(grams: number) {
-  if (grams >= 1000) return `${(grams / 1000).toFixed(grams % 1000 === 0 ? 0 : 1)} kg`;
-  return `${grams} g`;
+  if (grams >= 1000) {
+    const kg = grams / 1000;
+    return `${kg % 1 === 0 ? kg.toFixed(0) : Number(kg.toFixed(2))} kg`;
+  }
+  return `${Math.max(0, grams)} g`;
 }
 
 export type SearchParams = Record<string, string | string[] | undefined>;

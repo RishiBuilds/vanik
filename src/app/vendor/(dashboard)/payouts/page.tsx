@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CalendarClock, CircleDollarSign, PiggyBank, Truck, Wallet } from "lucide-react";
 import { requireVendor } from "@/lib/session";
 import { getPayoutsOverview } from "@/lib/queries/vendor-store";
-import { PLATFORM_FEE_RATE, PAYOUT_FEE } from "@/lib/services/pricing";
+import { PLATFORM_FEE_RATE, PAYOUT_FEE, computeVendorPayout } from "@/lib/services/pricing";
 import { formatDate, formatDateShort, formatMoney } from "@/lib/utils";
 import { PageHeader, StatCard } from "@/components/account/page-header";
 import { Badge } from "@/components/ui/badge";
@@ -27,8 +27,7 @@ export default async function VendorPayoutsPage() {
   const pct = `${Math.round(PLATFORM_FEE_RATE * 100)}%`;
 
   const exGross = data.next?.gross ?? 10000;
-  const exCommission = Math.round(exGross * PLATFORM_FEE_RATE);
-  const exNet = exGross - exCommission - PAYOUT_FEE;
+  const { commission: exCommission, net: exNet } = computeVendorPayout(exGross);
 
   return (
     <div>

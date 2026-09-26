@@ -31,24 +31,27 @@ export const emptyAddress: AddressInput = {
 };
 
 const POSTAL_ZONES: Record<string, string> = {
-  "1": "Delhi & nearby",
-  "2": "Haryana, Punjab & nearby",
+  "1": "Delhi, Haryana, Punjab & North",
+  "2": "Uttar Pradesh & Uttarakhand",
   "3": "Rajasthan & Gujarat",
-  "4": "Maharashtra & Goa",
+  "4": "Maharashtra, Goa & MP",
   "5": "Andhra Pradesh, Telangana & Karnataka",
   "6": "Tamil Nadu & Kerala",
-  "7": "West Bengal & NE India",
-  "8": "Bihar, Jharkhand & Odisha",
+  "7": "West Bengal, Odisha & North East",
+  "8": "Bihar & Jharkhand",
   "9": "Army Post Office",
 };
 
 export function pinZone(pin: string) {
-  const first = pin.charAt(0);
+  const cleaned = pin.trim().replace(/\D/g, "");
+  if (!cleaned) return null;
+  const first = cleaned.charAt(0);
   return POSTAL_ZONES[first] ?? null;
 }
 
-const METRO_PREFIXES = ["1100", "4000", "5600", "7000", "3800", "6000", "5000", "2260"];
+const METRO_PREFIXES = ["1100", "4000", "5600", "7000", "3800", "6000", "5000", "2260", "4110"];
 
 export function isMetroPin(pin: string) {
-  return METRO_PREFIXES.some((prefix) => pin.startsWith(prefix));
+  const cleaned = pin.trim().replace(/\D/g, "");
+  return METRO_PREFIXES.some((prefix) => cleaned.startsWith(prefix));
 }

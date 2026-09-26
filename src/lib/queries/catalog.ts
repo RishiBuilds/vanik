@@ -235,7 +235,14 @@ export async function browseProducts(params: BrowseParams): Promise<BrowseResult
             ? [desc(p.rating), desc(p.reviewCount)]
             : sort === "bestselling"
               ? [desc(p.salesCount)]
-              : [...(titleHit ? [asc(titleHit)] : []), desc(p.featured), desc(p.salesCount)];
+              : sort === "discount"
+                ? [
+                    desc(
+                      sql`case when ${p.compareAtPrice} > ${p.price} then (${p.compareAtPrice} - ${p.price}) * 1.0 / ${p.compareAtPrice} else 0 end`,
+                    ),
+                    desc(p.salesCount),
+                  ]
+                : [...(titleHit ? [asc(titleHit)] : []), desc(p.featured), desc(p.salesCount)];
 
   const from = () => db.select(productCardSelect).from(p).innerJoin(s, eq(s.id, p.storeId)).innerJoin(c, eq(c.id, p.categoryId));
 
