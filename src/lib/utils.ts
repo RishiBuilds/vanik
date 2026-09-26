@@ -98,6 +98,16 @@ export function unsplash(id: string, w = 800, h?: number) {
   return `https://images.unsplash.com/photo-${id}?w=${w}${size}&q=75&auto=format`;
 }
 
+export function truncate(str: string, maxLen: number) {
+  if (str.length <= maxLen) return str;
+  return str.slice(0, maxLen - 1).trimEnd() + "…";
+}
+
+export function formatWeight(grams: number) {
+  if (grams >= 1000) return `${(grams / 1000).toFixed(grams % 1000 === 0 ? 0 : 1)} kg`;
+  return `${grams} g`;
+}
+
 export type SearchParams = Record<string, string | string[] | undefined>;
 
 export function firstParam(v: string | string[] | undefined) {
