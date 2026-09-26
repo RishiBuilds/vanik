@@ -34,3 +34,9 @@ export function computeTotals(input: { subtotal: number; shipping: number; promo
 export const PLATFORM_FEE_RATE = 0.08;
 export const PAYOUT_FEE = 1000;
 export const COD_LIMIT = 2_500_000;
+
+export function computeVendorPayout(vendorSubtotal: number) {
+  const commission = Math.round(vendorSubtotal * PLATFORM_FEE_RATE);
+  const net = Math.max(0, vendorSubtotal - commission - PAYOUT_FEE);
+  return { vendorSubtotal, commission, payoutFee: PAYOUT_FEE, net };
+}
