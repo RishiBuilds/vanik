@@ -35,4 +35,10 @@ export const cardSchema = z.object({
   holderName: z.string().trim().min(2, "Enter the name on the card"),
 });
 
+export const ifscSchema = z
+  .string()
+  .trim()
+  .toUpperCase()
+  .regex(/^[A-Z]{4}0[A-Z0-9]{6}$/, "Enter a valid 11-character IFSC code");
+
 export type FieldErrors = Record<string, string[] | undefined>;
