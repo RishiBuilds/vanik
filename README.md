@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/vanik-logo.svg" alt="Vanik" width="36" height="36" />
+<img src="https://raw.githubusercontent.com/RishiBuilds/vanik/main/public/vanik-logo.svg" alt="Vanik" width="36" height="36" />
 
 # Vanik
 
